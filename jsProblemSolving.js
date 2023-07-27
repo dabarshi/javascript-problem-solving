@@ -175,5 +175,36 @@ console.log(randomPasswordGenerator(8)); // output sample : 9li$4d5@
 // The function should take a Roman numeral string (e.g., "IX" or "XXI") 
 // as input and return the corresponding integer value.
 
+function romanToInt(roman) {
+    
 
+    const romanNumerals = {
+      I: 1,
+      V: 5,
+      X: 10,
+      L: 50,
+      C: 100,
+      D: 500,
+      M: 1000,
+    };
+  
+    let result = 0;
+    let preValue = 0;
+  
+    for (let i = roman.length - 1; i >= 0; i--) {
+      const currentRoman = roman[i];
+      const currentValue = romanNumerals[currentRoman];
+  
+      if (currentValue < preValue) {
+        result -= currentValue;
+      } else {
+        result += currentValue;
+      }
+  
+      preValue = currentValue;
+    }
+  
+    return result;
+  }
 
+console.log(romanToInt("IV")); // output is : 4
